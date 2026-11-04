@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= title %></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div style="min-height: 100vh; background: #FAF6EE; display: flex; flex-wrap: wrap">
+  <section style="flex: 1 1 460px; min-width: 0; background: #1F5A3F; color: #fff; padding: 56px clamp(24px, 5vw, 72px); display: flex; flex-direction: column; justify-content: space-between; gap: 48px; position: relative; overflow: hidden">
+    <div style="display: flex; align-items: center; gap: 12px; position: relative; z-index: 1">
+      <div style="width: 44px; height: 44px; border-radius: 13px; background: #F08A24; display: grid; place-items: center">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2B1604" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0z"></path><path d="M9 7c0-1.5 1-1.5 1-3M14 7c0-1.5 1-1.5 1-3"></path></svg>
+      </div>
+      <p style="margin: 0">Nalla Malla Reddy Engineering College</p>
+    </div>
+    <div style="position: relative; z-index: 1; max-width: 520px">
+      <h1 style="font-size: clamp(36px, 4.6vw, 60px); line-height: 1.04; font-weight: 800">Order ahead.<br>Pick up hot.</h1>
+      <p style="margin-top: 20px; font-size: 18px; color: #D6E6DB; max-width: 440px">Choose your food between classes, pay by UPI or at the counter, and collect it with a pickup token. No queue.</p>
+      <ul style="list-style: none; margin: 32px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px">
+        <li style="display: flex; gap: 12px; align-items: center"><span style="width: 28px; height: 28px; border-radius: 50%; background: #F08A24; display: grid; place-items: center; flex: none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B1604" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>Live menu with availability and prep times</li>
+        <li style="display: flex; gap: 12px; align-items: center"><span style="width: 28px; height: 28px; border-radius: 50%; background: #F08A24; display: grid; place-items: center; flex: none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B1604" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>Track every order from placed to ready</li>
+        <li style="display: flex; gap: 12px; align-items: center"><span style="width: 28px; height: 28px; border-radius: 50%; background: #F08A24; display: grid; place-items: center; flex: none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B1604" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>Separate console for canteen staff</li>
+      </ul>
+    </div>
+    <div style="position: absolute; right: -120px; bottom: -140px; width: 420px; height: 420px" aria-hidden="true">
+      <div class="plate" style="inset: 0"><i style="background: #F3D9A4"></i></div>
+      <div class="plate" style="width: 150px; height: 150px; left: 40px; top: 20px; box-shadow: 0 10px 24px rgba(0,0,0,.2)"><i style="background: #CFE3C6"></i></div>
+    </div>
+    <p style="position: relative; z-index: 1; font-size: 14px; color: #BFD6C7">Students sign in with a roll number or college email. Staff accounts are made by the canteen office.</p>
+  </section>
+
+  <main style="flex: 1 1 460px; min-width: 0; display: grid; place-items: center; padding: 40px clamp(16px, 4vw, 56px)">
+    <!-- login.js draws the sign-in / register card inside this box -->
+    <div id="card" style="width: 100%; max-width: 460px; background: #fff; border: 1px solid #E7E0D1; border-radius: 24px; padding: clamp(20px, 4vw, 36px); box-shadow: 0 1px 2px rgba(18,52,42,.05), 0 16px 40px rgba(18,52,42,.08)"></div>
+  </main>
+</div>
+<script src="/js/login.js"></script>
+</body>
+</html>
