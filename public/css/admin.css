@@ -1,1018 +1,182 @@
-/* =========================================
-   CAMPUS CANTEEN ADMIN
-   Mobile-first responsive stylesheet
-   ========================================= */
-
-/* 1. DESIGN TOKENS */
-
-:root {
-    --g9: #12342A;
-    --g8: #173F31;
-    --g7: #1F5A3F;
-    --g1: #E4EFE7;
-
-    --cream: #FAF6EE;
-    --ink: #1C2A23;
-    --mut: #66756C;
-    --line: #E7E0D1;
-
-    --or: #F08A24;
-    --or7: #A84A07;
-    --or1: #FCE9D3;
-
-    --red: #B3261E;
-
-    --r: 14px;
-
-    --sidebar-width: 220px;
-    --content-padding: 20px;
-}
-
-/* 2. RESET */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    width: 100%;
-    min-height: 100%;
-    scroll-behavior: smooth;
-}
-
-body {
-    width: 100%;
-    min-height: 100vh;
-    background: #F4F1E9;
-    color: var(--ink);
-
-    font-family: 'Figtree', system-ui, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3,
-p,
-ul {
-    margin: 0;
-}
-
-h1,
-h2,
-h3,
-.disp {
-    font-family: 'Bricolage Grotesque', 'Figtree', sans-serif;
-    letter-spacing: -0.02em;
-}
-
-button,
-input,
-select,
-textarea {
-    font: inherit;
-    color: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-img,
-svg {
-    max-width: 100%;
-}
-
-:focus-visible {
-    outline: 3px solid var(--or);
-    outline-offset: 3px;
-}
-
-
-/* =========================================
-   3. MAIN LAYOUT
-   ========================================= */
-
-.shell {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100%;
-}
-
-.content {
-    flex: 1;
-    min-width: 0;
-    width: 100%;
-    padding: 18px 14px 30px;
-    overflow-x: hidden;
-}
-
-
-/* =========================================
-   4. SIDEBAR - MOBILE FIRST
-   ========================================= */
-
-.sidebar {
-    width: 100%;
-    flex: none;
-
-    background: var(--g9);
-    color: #fff;
-
-    padding: 16px 14px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* Navigation */
-
-.snav {
-    display: flex;
-    flex-direction: row;
-    gap: 7px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    padding-bottom: 5px;
-
-    scrollbar-width: thin;
-    scrollbar-color: #456B59 transparent;
-
-    -webkit-overflow-scrolling: touch;
-}
-
-.snav::-webkit-scrollbar {
-    height: 4px;
-}
-
-.snav::-webkit-scrollbar-thumb {
-    background: #456B59;
-    border-radius: 10px;
-}
-
-.slink {
-    flex: none;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    min-height: 38px;
-    padding: 0 13px;
-
-    border-radius: 9px;
-    border: 0;
-
-    background: transparent;
-    color: #CFE0D5;
-
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    text-align: left;
-}
-
-.slink:hover {
-    background: rgba(255,255,255,.08);
-    color: #fff;
-}
-
-.slink.on {
-    background: #fff;
-    color: var(--g9);
-}
-
-/* Sidebar bottom section */
-
-.sidebar > div:last-child {
-    margin-top: 0 !important;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255,255,255,.12);
-    gap: 8px !important;
-}
-
-.sidebar > div:last-child p {
-    font-size: 12px !important;
-}
-
-
-/* =========================================
-   5. BUTTONS
-   ========================================= */
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-
-    min-height: 38px;
-    padding: 0 15px;
-
-    border: 0;
-    border-radius: 9px;
-
-    background: var(--g7);
-    color: #fff;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    text-decoration: none;
-    white-space: nowrap;
-
-    transition: background .2s ease, transform .2s ease;
-}
-
-.btn:hover {
-    background: var(--g9);
-}
-
-.btn:active {
-    transform: scale(.98);
-}
-
-.btn.ghost {
-    background: #fff;
-    color: var(--g7);
-    border: 1px solid var(--g7);
-}
-
-.btn.ghost:hover {
-    background: var(--g1);
-}
-
-.btn.danger {
-    background: var(--red);
-}
-
-.btn.danger:hover {
-    background: #8C1D18;
-}
-
-.btn.sm {
-    min-height: 32px;
-    padding: 0 11px;
-    font-size: 12px;
-}
-
-
-/* =========================================
-   6. ICON BUTTONS
-   ========================================= */
-
-.icobtn {
-    width: 38px;
-    height: 38px;
-
-    flex: none;
-
-    display: grid;
-    place-items: center;
-
-    border: 0;
-    border-radius: 9px;
-
-    background: transparent;
-    color: var(--mut);
-}
-
-.icobtn:hover {
-    background: var(--g1);
-    color: var(--g7);
-}
-
-.icobtn.del:hover {
-    background: #FBEAE8;
-    color: var(--red);
-}
-
-
-/* =========================================
-   7. CARDS
-   ========================================= */
-
-.card {
-    background: #fff;
-
-    border: 1px solid var(--line);
-    border-radius: var(--r);
-
-    box-shadow:
-        0 1px 2px rgba(18,52,42,.04),
-        0 5px 18px rgba(18,52,42,.04);
-
-    min-width: 0;
-}
-
-
-/* =========================================
-   8. INPUTS AND FORMS
-   ========================================= */
-
-.in {
-    width: 100%;
-    min-width: 0;
-    min-height: 40px;
-
-    padding: 0 11px;
-
-    border: 1px solid #C9C2B1;
-    border-radius: 9px;
-
-    background: #fff;
-
-    font-size: 14px;
-
-    outline: none;
-    transition: border .2s ease, box-shadow .2s ease;
-}
-
-.in:focus {
-    border-color: var(--g7);
-    box-shadow: 0 0 0 3px rgba(31,90,63,.10);
-}
-
-.in.err {
-    border-color: var(--red);
-}
-
-.lab {
-    display: block;
-    margin-bottom: 5px;
-
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.errtxt {
-    margin-top: 5px;
-    color: var(--red);
-    font-size: 12px;
-}
-
-
-/* =========================================
-   9. KPI DASHBOARD CARDS
-   ========================================= */
-
-.kpis {
-    display: grid;
-
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 10px;
-}
-
-.kpi {
-    min-width: 0;
-    padding: 14px;
-}
-
-.kpi p {
-    color: var(--mut);
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.kpi b {
-    display: block;
-    margin-top: 7px;
-
-    font-size: clamp(21px, 5vw, 28px);
-    font-weight: 800;
-
-    line-height: 1.15;
-    overflow-wrap: anywhere;
-}
-
-
-/* =========================================
-   10. GRID LAYOUTS
-   ========================================= */
-
-.grid2 {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-}
-
-.tools {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-
-    margin-top: 16px;
-}
-
-.tools > div {
-    width: 100%;
-    min-width: 0;
-}
-
-
-/* =========================================
-   11. TABLES
-   ========================================= */
-
-.tbl {
-    width: 100%;
-    max-width: 100%;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-}
-
-.tbl > div {
-    min-width: 700px;
-}
-
-.trow {
-    display: grid;
-
-    grid-template-columns: var(--cols);
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 11px 12px;
-
-    border-bottom: 1px solid var(--line);
-
-    font-size: 13px;
-}
-
-.trow.head {
-    background: #FAF8F2;
-
-    color: var(--mut);
-
-    font-size: 11px;
-    font-weight: 800;
-
-    text-transform: uppercase;
-    letter-spacing: .04em;
-
-    border-radius: var(--r) var(--r) 0 0;
-}
-
-.trow:last-child {
-    border-bottom: 0;
-}
-
-.c-orders {
-    --cols: 70px minmax(100px,1.1fr) minmax(140px,2fr) 65px 110px 150px;
-}
-
-.c-menu {
-    --cols: minmax(120px,2fr) 90px 65px 75px 110px 85px;
-}
-
-.c-inv {
-    --cols: minmax(120px,1.4fr) 90px 75px minmax(120px,1.6fr) 75px 100px;
-}
-
-.c-rep {
-    --cols: minmax(100px,1.5fr) 1fr 1fr 1fr;
-}
-
-
-/* =========================================
-   12. STATUS PILLS
-   ========================================= */
-
-.pill {
-    display: inline-block;
-
-    padding: 4px 9px;
-
-    border-radius: 999px;
-
-    background: var(--g1);
-    color: var(--g7);
-
-    font-size: 11px;
-    font-weight: 800;
-
-    white-space: nowrap;
-}
-
-.pill.s0 {
-    background: var(--or1);
-    color: var(--or7);
-}
-
-.pill.s3 {
-    background: var(--g7);
-    color: #fff;
-}
-
-.pill.s4 {
-    background: #E9E7E0;
-    color: #3C453F;
-}
-
-.pill.bad {
-    background: #FBE3E0;
-    color: #8C1D18;
-}
-
-
-/* =========================================
-   13. VEG / NON-VEG INDICATORS
-   ========================================= */
-
-.vi {
-    width: 16px;
-    height: 16px;
-
-    flex: none;
-
-    border: 2px solid;
-
-    display: grid;
-    place-items: center;
-
-    border-radius: 4px;
-}
-
-.vi i {
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-    background: currentColor;
-
-    display: block;
-}
-
-.vi.veg {
-    color: #2E7D32;
-}
-
-.vi.nonveg {
-    color: #B3261E;
-}
-
-
-/* =========================================
-   14. TOGGLE SWITCH
-   ========================================= */
-
-.sw {
-    width: 46px;
-    height: 38px;
-
-    border: 0;
-    background: none;
-    padding: 0;
-
-    display: grid;
-    place-items: center;
-}
-
-.sw span {
-    width: 40px;
-    height: 23px;
-
-    border-radius: 13px;
-
-    background: #B9B6AA;
-
-    position: relative;
-
-    transition: background .2s;
-}
-
-.sw span::after {
-    content: "";
-
-    position: absolute;
-    top: 2px;
-    left: 2px;
-
-    width: 19px;
-    height: 19px;
-
-    border-radius: 50%;
-    background: #fff;
-
-    transition: transform .2s;
-}
-
-.sw.on span {
-    background: var(--g7);
-}
-
-.sw.on span::after {
-    transform: translateX(17px);
-}
-
-
-/* =========================================
-   15. CHARTS
-   ========================================= */
-
-.plot {
-    display: flex;
-    align-items: flex-end;
-
-    gap: 4px;
-
-    height: 170px;
-    padding-top: 8px;
-
-    min-width: 0;
-}
-
-.plot .bar {
-    flex: 1 1 0;
-    min-width: 4px;
-
-    background: var(--g7);
-
-    border-radius: 5px 5px 0 0;
-
-    position: relative;
-}
-
-.plot .bar.pk {
-    background: var(--or);
-}
-
-.plot.sparse .bar {
-    max-width: 56px;
-}
-
-.xl {
-    display: flex;
-
-    gap: 4px;
-    margin-top: 8px;
-
-    font-size: 11px;
-    color: var(--mut);
-}
-
-.xl span {
-    flex: 1 1 0;
-    min-width: 0;
-
-    text-align: center;
-
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-
-/* =========================================
-   16. PROGRESS METER
-   ========================================= */
-
-.meter {
-    height: 9px;
-
-    border-radius: 5px;
-
-    background: #EDEAE0;
-    overflow: hidden;
-}
-
-.meter i {
-    display: block;
-
-    height: 100%;
-
-    background: var(--g7);
-    border-radius: 5px;
-}
-
-.meter.low i {
-    background: var(--or);
-}
-
-
-/* =========================================
-   17. MODALS
-   ========================================= */
-
-.scrim {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(18,52,42,.60);
-
-    display: grid;
-    place-items: center;
-
-    padding: 12px;
-
-    z-index: 40;
-
-    overflow-y: auto;
+/* admin-mobile.css
+   Mobile + tablet optimised stylesheet for admin-mobile.ejs.
+   Sections: 1) original admin.css rules (unchanged, except the old 700px sidebar rule which
+   is replaced by section 4)  2) sidebar classes replacing inline styles (values identical)
+   3) touch helpers  4) responsive layers.
+   Above 860px wide the page renders like the original desktop design. */
+
+/* ===== 1. Original rules ===== */
+:root{--g9:#12342A;--g8:#173F31;--g7:#1F5A3F;--g1:#E4EFE7;--cream:#FAF6EE;--ink:#1C2A23;--mut:#55655C;--line:#E7E0D1;--or:#F08A24;--or7:#A84A07;--or1:#FCE9D3;--red:#B3261E;--r:16px}
+*{box-sizing:border-box}
+body{margin:0;background:#F4F1E9;color:#1C2A23;font-family:'Figtree',system-ui,sans-serif;font-size:16px;line-height:1.45}
+h1,h2,h3,p,ul{margin:0}
+h1,h2,h3,.disp{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-.02em}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid #F08A24;outline-offset:2px}
+.shell{display:flex;flex-wrap:wrap;min-height:100vh}
+.sidebar{flex:1 1 240px;max-width:100%;background:#12342A;color:#fff;padding:24px 16px;display:flex;flex-direction:column;gap:24px}
+.content{flex:999 1 620px;min-width:0;padding:clamp(16px,3vw,36px)}
+.snav{display:flex;flex-direction:column;gap:4px}
+.slink{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 14px;border-radius:12px;border:0;background:none;color:#CFE0D5;font-weight:600;text-align:left;width:100%}
+.slink:hover{background:rgba(255,255,255,.08);color:#fff}
+.slink.on{background:#fff;color:#12342A}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:0;font-weight:700;background:var(--g7);color:#fff;text-decoration:none}
+.btn:hover{background:var(--g9)}
+.btn.ghost{background:#fff;color:var(--g7);border:1.5px solid var(--g7)}
+.btn.ghost:hover{background:var(--g1)}
+.btn.danger{background:var(--red)}
+.btn.danger:hover{background:#8C1D18}
+.btn.sm{min-height:44px;padding:0 14px}
+.icobtn{width:44px;height:44px;border-radius:12px;border:0;background:none;color:var(--mut);display:grid;place-items:center}
+.icobtn:hover{background:var(--g1);color:var(--g7)}
+.icobtn.del:hover{background:#FBEAE8;color:var(--red)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(18,52,42,.05),0 8px 24px rgba(18,52,42,.05)}
+.in{width:100%;min-height:44px;border:1.5px solid #C9C2B1;border-radius:12px;padding:0 12px;background:#fff}
+.in.err{border-color:var(--red)}
+.lab{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.errtxt{color:var(--red);font-size:14px;margin-top:6px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px}
+.kpi{padding:18px 20px}
+.kpi p{color:var(--mut);font-size:14px;font-weight:600}
+.kpi b{display:block;margin-top:6px;font-size:34px;font-weight:800;line-height:1.1}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:20px}
+.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-top:20px}
+.tools>div{flex:1 1 180px;min-width:0}
+.tbl{overflow-x:auto}
+.tbl>div{min-width:760px}
+.trow{display:grid;grid-template-columns:var(--cols);gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line)}
+.trow.head{font-size:13px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;background:#FAF8F2;border-radius:var(--r) var(--r) 0 0}
+.trow:last-child{border-bottom:0}
+.c-orders{--cols:90px minmax(120px,1.1fr) minmax(180px,2fr) 80px 130px 190px}
+.c-menu{--cols:minmax(150px,2fr) 120px 80px 90px 130px 100px}
+.c-inv{--cols:minmax(140px,1.4fr) 110px 90px minmax(140px,1.6fr) 90px 120px}
+.c-rep{--cols:minmax(120px,1.5fr) 1fr 1fr 1fr}
+.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:13px;font-weight:700;background:var(--g1);color:var(--g7);white-space:nowrap}
+.pill.s0{background:var(--or1);color:var(--or7)}
+.pill.s3{background:var(--g7);color:#fff}
+.pill.s4{background:#E9E7E0;color:#3C453F}
+.pill.bad{background:#FBE3E0;color:#8C1D18}
+.vi{width:16px;height:16px;border:2px solid;display:grid;place-items:center;border-radius:4px;flex:none}
+.vi i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
+.vi.veg{color:#2E7D32}
+.vi.nonveg{color:#B3261E}
+.sw{width:52px;height:44px;border:0;background:none;padding:0;display:grid;place-items:center}
+.sw span{width:44px;height:26px;border-radius:13px;background:#B9B6AA;position:relative;transition:background .2s}
+.sw span::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.sw.on span{background:var(--g7)}
+.sw.on span::after{transform:translateX(18px)}
+.plot{display:flex;align-items:flex-end;gap:4px;height:200px;padding-top:8px}
+.plot .bar{flex:1 1 0;min-width:4px;background:var(--g7);border-radius:6px 6px 0 0;position:relative}
+.plot .bar.pk{background:var(--or)}
+.plot.sparse .bar{max-width:56px}
+.xl{display:flex;gap:4px;margin-top:8px;font-size:12px;color:var(--mut)}
+.xl span{flex:1 1 0;min-width:0;text-align:center;overflow:hidden;white-space:nowrap}
+.meter{height:10px;border-radius:5px;background:#EDEAE0;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--g7);border-radius:5px}
+.meter.low i{background:var(--or)}
+.scrim{position:fixed;inset:0;background:rgba(18,52,42,.55);display:grid;place-items:center;padding:16px;z-index:40;overflow-y:auto}
+.modal{width:100%;max-width:480px;background:#fff;border-radius:22px;padding:26px;box-shadow:0 30px 70px rgba(0,0,0,.3)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--g9);color:#fff;padding:12px 22px;border-radius:999px;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:60;font-weight:600;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translate(-50%,10px)}}
+.spin{width:28px;height:28px;border-radius:50%;border:4px solid #D3E3D8;border-top-color:var(--g7);animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.note{background:var(--or1);color:#6B3305;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== 2. Sidebar classes (were inline styles in admin.ejs; values unchanged) ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.sb-brand{display:flex;align-items:center;gap:12px}
+.sb-logo{width:42px;height:42px;border-radius:13px;background:#F08A24;display:grid;place-items:center;flex:none}
+.sb-title b{font-size:18px;display:block;line-height:1.1}
+.sb-title span{color:#BFD6C7;font-size:13px}
+.sb-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.sb-foot p{color:#BFD6C7;font-size:13px}
+.sb-out{width:100%}
+
+/* ===== 3. Touch helpers ===== */
+button,.btn,.slink,.icobtn,.sw{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@media (pointer:coarse){.btn:active{filter:brightness(.92)}.slink:active{background:rgba(255,255,255,.14)}.icobtn:active{background:var(--g1)}}
+@keyframes sheet{from{opacity:0;transform:translateY(24px)}}
+
+/* ===== 4. Responsive layers ===== */
+
+/* Small laptops / large tablets (landscape): keep the sidebar, tighten spacing */
+@media (min-width:861px) and (max-width:1100px){
+  .sidebar{flex-basis:208px;padding:20px 12px}
+  .content{padding:24px 20px}
+  .kpis{gap:12px}
+  .kpi{padding:16px}
+}
+
+/* Tablet portrait and phones (<=860px: the point where the original layout wrapped):
+   sticky top bar (brand + sign out), bottom tab bar for the sections, sheet-style modals */
+@media (max-width:860px){
+  html{scroll-padding-top:76px}
+  body{overflow-wrap:break-word}
+  .shell{display:block}
+
+  .sidebar{position:sticky;top:0;z-index:30;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:calc(10px + env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left))}
+  .sb-brand{min-width:0}
+  .sb-title{min-width:0}
+  .sb-foot{margin-top:0;flex-direction:row;align-items:center;gap:0;flex:none}
+  /* keep "Signed in as..." for screen readers, hide it visually to save space */
+  .sb-foot p{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .sb-out{width:auto;padding:0 16px}
+
+  /* Section navigation becomes a thumb-reachable bottom tab bar (JS still fills #snav) */
+  .snav{position:fixed;left:0;right:0;bottom:0;z-index:30;flex-direction:row;gap:2px;overflow-x:auto;scrollbar-width:none;background:#12342A;border-top:1px solid rgba(255,255,255,.12);padding:6px max(8px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+  .snav::-webkit-scrollbar{display:none}
+  .slink{flex:1 0 auto;flex-direction:column;justify-content:center;gap:2px;width:auto;min-width:64px;min-height:56px;padding:6px 10px;font-size:12px;line-height:1.2;text-align:center;white-space:nowrap;border-radius:14px}
+
+  .content{--pad:clamp(16px,3.5vw,28px);padding:var(--pad) max(var(--pad),env(safe-area-inset-right)) calc(88px + env(safe-area-inset-bottom)) max(var(--pad),env(safe-area-inset-left))}
+
+  .grid2{gap:16px}
+  .tools>div{flex-basis:140px}
+  .tools>.btn{flex:1 1 100%}
+
+  /* Tables stay as real tables, but scroll inside their own card, never the page */
+  .tbl{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin}
+  .tbl>div{min-width:0}
+  .trow.c-orders{min-width:900px}
+  .trow.c-menu{min-width:780px}
+  .trow.c-inv{min-width:800px}
+  .trow.c-rep{min-width:420px}
+
+  /* Modals become bottom sheets */
+  .scrim{place-items:end center;padding:0;overscroll-behavior:contain}
+  .modal{max-width:560px;max-height:92vh;max-height:92dvh;overflow-y:auto;border-radius:22px 22px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));animation:sheet .25s ease}
+
+  /* Toasts: full text width, lifted above the tab bar */
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom));width:max-content;max-width:calc(100vw - 32px);text-align:center;border-radius:16px}
+}
+
+/* Phones */
+@media (max-width:600px){
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .kpi{padding:14px}
+  .kpi p{font-size:13px}
+  .kpi b{font-size:clamp(22px,7vw,28px)}
+  .content h1{font-size:28px;line-height:1.15}
+  .content h2{font-size:22px;line-height:1.2}
+  .plot{height:160px}
+  .xl{font-size:11px}
+  /* 16px form text stops iOS Safari zooming the page on focus */
+  .in,input,select,textarea{font-size:16px}
+}
+
+/* Very small phones */
+@media (max-width:360px){
+  .sb-title span{display:none}
+  .sb-out{padding:0 12px}
+  .slink{min-width:58px;padding:6px 8px}
+}
+
+/* Landscape phones: reclaim vertical space */
+@media (max-width:860px) and (max-height:480px){
+  .sidebar{position:static}
+  .slink{flex-direction:row;gap:8px;min-height:44px}
+  .snav{padding-top:4px;padding-bottom:calc(4px + env(safe-area-inset-bottom))}
+  .content{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+  .toast{bottom:calc(68px + env(safe-area-inset-bottom))}
 }
-
-.modal {
-    width: 100%;
-    max-width: 460px;
-
-    max-height: calc(100dvh - 24px);
-    overflow-y: auto;
-
-    background: #fff;
-
-    border-radius: 17px;
-
-    padding: 20px;
-
-    box-shadow: 0 25px 60px rgba(0,0,0,.25);
-}
-
-
-/* =========================================
-   18. TOAST NOTIFICATIONS
-   ========================================= */
-
-.toast {
-    position: fixed;
-
-    left: 50%;
-    bottom: 18px;
-
-    transform: translateX(-50%);
-
-    width: max-content;
-    max-width: calc(100% - 28px);
-
-    background: var(--g9);
-    color: #fff;
-
-    padding: 11px 17px;
-
-    border-radius: 999px;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,.20);
-
-    z-index: 60;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    animation: pop .25s ease;
-}
-
-@keyframes pop {
-    from {
-        opacity: 0;
-        transform: translate(-50%, 10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-}
-
-
-/* =========================================
-   19. LOADING SPINNER
-   ========================================= */
-
-.spin {
-    width: 26px;
-    height: 26px;
-
-    border-radius: 50%;
-
-    border: 4px solid #D3E3D8;
-    border-top-color: var(--g7);
-
-    animation: sp .8s linear infinite;
-}
-
-@keyframes sp {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-/* =========================================
-   20. NOTE / ALERT
-   ========================================= */
-
-.note {
-    background: var(--or1);
-    color: #6B3305;
-
-    border-radius: 10px;
-
-    padding: 10px 12px;
-
-    font-size: 13px;
-    font-weight: 600;
-}
-
-
-/* =========================================
-   21. SMALL PHONES
-   ========================================= */
-
-@media (max-width: 380px) {
-
-    .content {
-        padding: 14px 10px 24px;
-    }
-
-    .sidebar {
-        padding: 13px 10px;
-    }
-
-    .kpis {
-        gap: 8px;
-    }
-
-    .kpi {
-        padding: 11px;
-    }
-
-    .kpi p {
-        font-size: 11px;
-    }
-
-    .kpi b {
-        font-size: 21px;
-    }
-
-    .btn {
-        padding: 0 11px;
-        font-size: 12px;
-    }
-
-    .modal {
-        padding: 15px;
-    }
-}
-
-
-/* =========================================
-   22. TABLETS
-   ========================================= */
-
-@media (min-width: 600px) {
-
-    .content {
-        padding: 22px;
-    }
-
-    .sidebar {
-        padding: 18px;
-    }
-
-    .kpis {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-    }
-
-    .grid2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-    }
-
-    .tools {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-end;
-    }
-
-    .tools > div {
-        flex: 1 1 160px;
-    }
-}
-
-
-/* =========================================
-   23. LAPTOPS AND DESKTOPS
-   ========================================= */
-
-@media (min-width: 900px) {
-
-    .shell {
-        flex-direction: row;
-    }
-
-    .sidebar {
-        position: sticky;
-        top: 0;
-
-        width: var(--sidebar-width);
-        height: 100vh;
-
-        flex: 0 0 var(--sidebar-width);
-
-        padding: 22px 14px;
-
-        gap: 22px;
-    }
-
-    .sidebar > div:last-child {
-        margin-top: auto !important;
-    }
-
-    .snav {
-        flex-direction: column;
-        overflow: visible;
-    }
-
-    .slink {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .content {
-        flex: 1;
-        min-width: 0;
-
-        padding: 26px;
-    }
-
-    .kpis {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 14px;
-    }
-
-    .kpi {
-        padding: 17px;
-    }
-
-    .kpi b {
-        font-size: 29px;
-    }
-
-    .grid2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-    }
-}
-
-
-/* =========================================
-   24. LARGE DESKTOPS
-   ========================================= */
-
-@media (min-width: 1400px) {
-
-    .content {
-        padding: 32px 40px;
-    }
-
-    .sidebar {
-        width: 240px;
-        flex-basis: 240px;
-    }
-
-    .kpis {
-        gap: 18px;
-    }
-
-    .grid2 {
-        gap: 22px;
-    }
-}
-
-
-/* =========================================
-   25. ACCESSIBILITY
-   ========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
