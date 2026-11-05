@@ -1,182 +1,165 @@
-/* admin-mobile.css
-   Mobile + tablet optimised stylesheet for admin-mobile.ejs.
-   Sections: 1) original admin.css rules (unchanged, except the old 700px sidebar rule which
-   is replaced by section 4)  2) sidebar classes replacing inline styles (values identical)
-   3) touch helpers  4) responsive layers.
-   Above 860px wide the page renders like the original desktop design. */
-
-/* ===== 1. Original rules ===== */
-:root{--g9:#12342A;--g8:#173F31;--g7:#1F5A3F;--g1:#E4EFE7;--cream:#FAF6EE;--ink:#1C2A23;--mut:#55655C;--line:#E7E0D1;--or:#F08A24;--or7:#A84A07;--or1:#FCE9D3;--red:#B3261E;--r:16px}
+/* admin-mobile.css — canteen console, mobile-first.
+   Identity: canteen signage. Ink black, turmeric amber, 2px outlines, stamped (hard) shadows.
+   Phones: ink top bar + bottom tab bar + sheet modals. 900px+: left sidebar console.
+   All class names match what admin.js renders (.slink, .kpi, .trow, .c-*, .pill, .sw, .plot, ...). */
+:root{--g9:#14181F;--g8:#1D232C;--g7:#1E8E4E;--g1:#DDF3E4;--cream:#F2F4EF;--ink:#14181F;--mut:#5B6470;--line:#D5DAD0;--or:#FFB81C;--or7:#7A4B00;--or1:#FFF0C2;--red:#D62F25;--r:16px;--dock:84px}
 *{box-sizing:border-box}
-body{margin:0;background:#F4F1E9;color:#1C2A23;font-family:'Figtree',system-ui,sans-serif;font-size:16px;line-height:1.45}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;background:#E9EDE4;color:var(--ink);font:400 16px/1.5 'Hanken Grotesk',system-ui,sans-serif;overflow-wrap:break-word}
 h1,h2,h3,p,ul{margin:0}
-h1,h2,h3,.disp{font-family:'Bricolage Grotesque','Figtree',sans-serif;letter-spacing:-.02em}
-button,input,select{font:inherit;color:inherit}
+h1,h2,h3,.disp{font-family:'Barlow Condensed','Hanken Grotesk',sans-serif;font-weight:800;line-height:1.05}
+h1{font-size:40px}h2{font-size:28px}h3{font-size:22px}
+button,input,select,textarea{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+input,select,textarea{font-size:16px}
 button{cursor:pointer}
-:focus-visible{outline:3px solid #F08A24;outline-offset:2px}
-.shell{display:flex;flex-wrap:wrap;min-height:100vh}
-.sidebar{flex:1 1 240px;max-width:100%;background:#12342A;color:#fff;padding:24px 16px;display:flex;flex-direction:column;gap:24px}
-.content{flex:999 1 620px;min-width:0;padding:clamp(16px,3vw,36px)}
-.snav{display:flex;flex-direction:column;gap:4px}
-.slink{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 14px;border-radius:12px;border:0;background:none;color:#CFE0D5;font-weight:600;text-align:left;width:100%}
-.slink:hover{background:rgba(255,255,255,.08);color:#fff}
-.slink.on{background:#fff;color:#12342A}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:0;font-weight:700;background:var(--g7);color:#fff;text-decoration:none}
-.btn:hover{background:var(--g9)}
-.btn.ghost{background:#fff;color:var(--g7);border:1.5px solid var(--g7)}
-.btn.ghost:hover{background:var(--g1)}
-.btn.danger{background:var(--red)}
-.btn.danger:hover{background:#8C1D18}
-.btn.sm{min-height:44px;padding:0 14px}
+:focus-visible{outline:3px solid #2F6BFF;outline-offset:2px}
+
+/* ---------- Shell: phones = top bar + bottom tabs ---------- */
+.shell{min-height:100vh;min-height:100dvh}
+.sidebar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:#fff;border-bottom:4px solid var(--or);padding:calc(10px + env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left))}
+.sb-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.sb-logo{width:40px;height:40px;border-radius:12px;background:var(--or);display:grid;place-items:center;flex:none;box-shadow:3px 3px 0 #fff}
+.sb-title{min-width:0}
+.sb-title b{display:block;font-size:24px;line-height:1;color:#fff}
+.sb-title span{color:#AEB6C2;font-size:12px}
+.sb-foot{flex:none}
+.sb-foot p{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.snav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;background:#fff;border-top:2px solid var(--ink);padding:6px max(8px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+.snav::-webkit-scrollbar{display:none}
+.slink{flex:1 0 auto;min-width:64px;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 10px;border:2px solid transparent;border-radius:12px;background:none;color:var(--mut);font-size:12px;font-weight:700;line-height:1.15;white-space:nowrap;text-align:center}
+.slink.on{background:var(--or);border-color:var(--ink);color:var(--ink)}
+.content{min-width:0;padding:20px max(16px,env(safe-area-inset-right)) calc(var(--dock) + 16px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;border:2px solid var(--ink);background:var(--ink);color:#fff;font-weight:700;text-decoration:none;box-shadow:3px 3px 0 var(--or);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--or)}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.btn.ghost:active{box-shadow:1px 1px 0 var(--ink)}
+.btn.danger{background:var(--red);border-color:var(--ink);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+.btn.danger:active{box-shadow:1px 1px 0 var(--ink)}
+.btn.sm{min-height:44px;padding:0 14px;box-shadow:2px 2px 0 var(--or)}
+.btn.ghost.sm,.btn.danger.sm{box-shadow:2px 2px 0 var(--ink)}
+.sidebar .btn.sb-out{min-height:44px;padding:0 16px;background:transparent;color:#fff;border-color:rgba(255,255,255,.5);box-shadow:none}
+.sidebar .btn.sb-out:active{transform:none;background:rgba(255,255,255,.14)}
 .icobtn{width:44px;height:44px;border-radius:12px;border:0;background:none;color:var(--mut);display:grid;place-items:center}
-.icobtn:hover{background:var(--g1);color:var(--g7)}
-.icobtn.del:hover{background:#FBEAE8;color:var(--red)}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(18,52,42,.05),0 8px 24px rgba(18,52,42,.05)}
-.in{width:100%;min-height:44px;border:1.5px solid #C9C2B1;border-radius:12px;padding:0 12px;background:#fff}
-.in.err{border-color:var(--red)}
-.lab{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
-.errtxt{color:var(--red);font-size:14px;margin-top:6px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px}
-.kpi{padding:18px 20px}
+.icobtn:active{background:var(--or1);color:var(--ink)}
+.icobtn.del:active{background:#FBE0DD;color:var(--red)}
+
+/* ---------- Surfaces, forms ---------- */
+.card{background:#fff;border:2px solid var(--ink);border-radius:var(--r)}
+.in{width:100%;min-height:46px;border:2px solid var(--ink);border-radius:12px;padding:0 12px;background:#fff}
+.in:focus{outline:0;box-shadow:3px 3px 0 var(--or)}
+.in.err{border-color:var(--red);box-shadow:3px 3px 0 #F4B8B3}
+.lab{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+.errtxt{color:var(--red);font-size:14px;font-weight:600;margin-top:6px}
+.note{background:var(--or1);color:#4A2F00;border:2px solid var(--ink);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600}
+
+/* ---------- KPIs, grids, tools ---------- */
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kpi{position:relative;overflow:hidden;padding:14px 14px 14px 20px;box-shadow:3px 3px 0 var(--ink)}
+.kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--or)}
+.kpi:nth-child(4n+2)::before{background:var(--g7)}
+.kpi:nth-child(4n+3)::before{background:var(--ink)}
+.kpi:nth-child(4n+4)::before{background:var(--red)}
 .kpi p{color:var(--mut);font-size:14px;font-weight:600}
-.kpi b{display:block;margin-top:6px;font-size:34px;font-weight:800;line-height:1.1}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:20px}
+.kpi b{display:block;margin-top:2px;font:800 clamp(30px,9vw,40px)/1 'Barlow Condensed','Hanken Grotesk',sans-serif}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
 .tools{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-top:20px}
-.tools>div{flex:1 1 180px;min-width:0}
-.tbl{overflow-x:auto}
-.tbl>div{min-width:760px}
-.trow{display:grid;grid-template-columns:var(--cols);gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line)}
-.trow.head{font-size:13px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;background:#FAF8F2;border-radius:var(--r) var(--r) 0 0}
+.tools>div{flex:1 1 140px;min-width:0}
+.tools>.btn{flex:1 1 100%}
+
+/* ---------- Tables: scroll inside the card, first column stays pinned ---------- */
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;background:#fff;border:2px solid var(--ink);border-radius:var(--r)}
+.tbl>div{min-width:0}
+.trow{display:grid;grid-template-columns:var(--cols);gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:#fff}
+.trow.head{font-size:13px;font-weight:700;color:var(--ink);background:var(--or1);border-bottom:2px solid var(--ink);border-radius:14px 14px 0 0}
 .trow:last-child{border-bottom:0}
-.c-orders{--cols:90px minmax(120px,1.1fr) minmax(180px,2fr) 80px 130px 190px}
-.c-menu{--cols:minmax(150px,2fr) 120px 80px 90px 130px 100px}
-.c-inv{--cols:minmax(140px,1.4fr) 110px 90px minmax(140px,1.6fr) 90px 120px}
-.c-rep{--cols:minmax(120px,1.5fr) 1fr 1fr 1fr}
-.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:13px;font-weight:700;background:var(--g1);color:var(--g7);white-space:nowrap}
+.trow>:first-child{position:sticky;left:0;z-index:1;margin-left:-16px;padding-left:16px;background:inherit;box-shadow:6px 0 6px -6px rgba(20,24,31,.28)}
+.c-orders{--cols:90px minmax(120px,1.1fr) minmax(180px,2fr) 80px 130px 190px;min-width:880px}
+.c-menu{--cols:minmax(150px,2fr) 120px 80px 90px 130px 100px;min-width:760px}
+.c-inv{--cols:minmax(140px,1.4fr) 110px 90px minmax(140px,1.6fr) 90px 120px;min-width:780px}
+.c-rep{--cols:minmax(120px,1.5fr) 1fr 1fr 1fr;min-width:440px}
+
+/* ---------- Status pills, indicators, switch ---------- */
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:6px;font-size:13px;font-weight:700;background:var(--g1);color:#0F5A31;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
 .pill.s0{background:var(--or1);color:var(--or7)}
 .pill.s3{background:var(--g7);color:#fff}
-.pill.s4{background:#E9E7E0;color:#3C453F}
-.pill.bad{background:#FBE3E0;color:#8C1D18}
+.pill.s4{background:#E3E6E0;color:#3C4550}
+.pill.bad{background:#FBE0DD;color:#8C1D18}
 .vi{width:16px;height:16px;border:2px solid;display:grid;place-items:center;border-radius:4px;flex:none}
 .vi i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
-.vi.veg{color:#2E7D32}
-.vi.nonveg{color:#B3261E}
+.vi.veg{color:#1E8E4E}
+.vi.nonveg{color:#D62F25}
 .sw{width:52px;height:44px;border:0;background:none;padding:0;display:grid;place-items:center}
-.sw span{width:44px;height:26px;border-radius:13px;background:#B9B6AA;position:relative;transition:background .2s}
-.sw span::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}
+.sw span{width:44px;height:26px;border:2px solid var(--ink);border-radius:13px;background:#C9CEC4;position:relative;transition:background .2s}
+.sw span::after{content:"";position:absolute;top:1px;left:1px;width:16px;height:16px;border:2px solid var(--ink);border-radius:50%;background:#fff;transition:transform .2s}
 .sw.on span{background:var(--g7)}
 .sw.on span::after{transform:translateX(18px)}
-.plot{display:flex;align-items:flex-end;gap:4px;height:200px;padding-top:8px}
-.plot .bar{flex:1 1 0;min-width:4px;background:var(--g7);border-radius:6px 6px 0 0;position:relative}
-.plot .bar.pk{background:var(--or)}
+
+/* ---------- Charts and meters ---------- */
+.plot{display:flex;align-items:flex-end;gap:4px;height:170px;padding-top:8px;background:repeating-linear-gradient(to top,transparent 0 33px,rgba(20,24,31,.09) 33px 34px)}
+.plot .bar{flex:1 1 0;min-width:4px;background:var(--ink);border-radius:5px 5px 0 0;position:relative}
+.plot .bar.pk{background:var(--or);box-shadow:inset 0 0 0 2px var(--ink)}
 .plot.sparse .bar{max-width:56px}
-.xl{display:flex;gap:4px;margin-top:8px;font-size:12px;color:var(--mut)}
+.xl{display:flex;gap:4px;margin-top:8px;font-size:11px;color:var(--mut)}
 .xl span{flex:1 1 0;min-width:0;text-align:center;overflow:hidden;white-space:nowrap}
-.meter{height:10px;border-radius:5px;background:#EDEAE0;overflow:hidden}
-.meter i{display:block;height:100%;background:var(--g7);border-radius:5px}
+.meter{height:14px;border:2px solid var(--ink);border-radius:8px;background:#fff;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--g7)}
 .meter.low i{background:var(--or)}
-.scrim{position:fixed;inset:0;background:rgba(18,52,42,.55);display:grid;place-items:center;padding:16px;z-index:40;overflow-y:auto}
-.modal{width:100%;max-width:480px;background:#fff;border-radius:22px;padding:26px;box-shadow:0 30px 70px rgba(0,0,0,.3)}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--g9);color:#fff;padding:12px 22px;border-radius:999px;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:60;font-weight:600;animation:pop .25s ease}
+
+/* ---------- Modal (bottom sheet on phones), toast, spinner ---------- */
+.scrim{position:fixed;inset:0;display:grid;place-items:end center;background:rgba(20,24,31,.6);z-index:40;overflow-y:auto;overscroll-behavior:contain}
+.modal{width:100%;max-width:560px;max-height:92vh;max-height:92dvh;overflow-y:auto;background:#fff;border:2px solid var(--ink);border-bottom:0;border-radius:20px 20px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));animation:sheet .22s ease}
+.toast{position:fixed;left:50%;bottom:calc(var(--dock) + 8px + env(safe-area-inset-bottom));transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);text-align:center;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;box-shadow:3px 3px 0 var(--or);z-index:60;font-weight:600;animation:pop .22s ease}
 @keyframes pop{from{opacity:0;transform:translate(-50%,10px)}}
-.spin{width:28px;height:28px;border-radius:50%;border:4px solid #D3E3D8;border-top-color:var(--g7);animation:sp .8s linear infinite}
+@keyframes sheet{from{opacity:0;transform:translateY(28px)}}
+.spin{width:28px;height:28px;border-radius:50%;border:4px solid #D5DAD0;border-top-color:var(--ink);animation:sp .8s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.note{background:var(--or1);color:#6B3305;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:600}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-/* ===== 2. Sidebar classes (were inline styles in admin.ejs; values unchanged) ===== */
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-.sb-brand{display:flex;align-items:center;gap:12px}
-.sb-logo{width:42px;height:42px;border-radius:13px;background:#F08A24;display:grid;place-items:center;flex:none}
-.sb-title b{font-size:18px;display:block;line-height:1.1}
-.sb-title span{color:#BFD6C7;font-size:13px}
-.sb-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
-.sb-foot p{color:#BFD6C7;font-size:13px}
-.sb-out{width:100%}
-
-/* ===== 3. Touch helpers ===== */
-button,.btn,.slink,.icobtn,.sw{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-@media (pointer:coarse){.btn:active{filter:brightness(.92)}.slink:active{background:rgba(255,255,255,.14)}.icobtn:active{background:var(--g1)}}
-@keyframes sheet{from{opacity:0;transform:translateY(24px)}}
-
-/* ===== 4. Responsive layers ===== */
-
-/* Small laptops / large tablets (landscape): keep the sidebar, tighten spacing */
-@media (min-width:861px) and (max-width:1100px){
-  .sidebar{flex-basis:208px;padding:20px 12px}
-  .content{padding:24px 20px}
-  .kpis{gap:12px}
-  .kpi{padding:16px}
+/* ---------- Large phones / small tablets ---------- */
+@media (min-width:600px){
+  .content{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+  .kpi{padding:16px 16px 16px 22px}
+  .tools>div{flex-basis:180px}
+  .tools>.btn{flex:0 0 auto}
+  .plot{height:200px;background:repeating-linear-gradient(to top,transparent 0 39px,rgba(20,24,31,.09) 39px 40px)}
+  .xl{font-size:12px}
+  .scrim{place-items:center;padding:24px}
+  .modal{border-bottom:2px solid var(--ink);border-radius:20px;max-width:480px;padding:26px;box-shadow:8px 8px 0 var(--ink)}
 }
 
-/* Tablet portrait and phones (<=860px: the point where the original layout wrapped):
-   sticky top bar (brand + sign out), bottom tab bar for the sections, sheet-style modals */
-@media (max-width:860px){
-  html{scroll-padding-top:76px}
-  body{overflow-wrap:break-word}
-  .shell{display:block}
-
-  .sidebar{position:sticky;top:0;z-index:30;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:calc(10px + env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 10px max(16px,env(safe-area-inset-left))}
-  .sb-brand{min-width:0}
-  .sb-title{min-width:0}
-  .sb-foot{margin-top:0;flex-direction:row;align-items:center;gap:0;flex:none}
-  /* keep "Signed in as..." for screen readers, hide it visually to save space */
-  .sb-foot p{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .sb-out{width:auto;padding:0 16px}
-
-  /* Section navigation becomes a thumb-reachable bottom tab bar (JS still fills #snav) */
-  .snav{position:fixed;left:0;right:0;bottom:0;z-index:30;flex-direction:row;gap:2px;overflow-x:auto;scrollbar-width:none;background:#12342A;border-top:1px solid rgba(255,255,255,.12);padding:6px max(8px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
-  .snav::-webkit-scrollbar{display:none}
-  .slink{flex:1 0 auto;flex-direction:column;justify-content:center;gap:2px;width:auto;min-width:64px;min-height:56px;padding:6px 10px;font-size:12px;line-height:1.2;text-align:center;white-space:nowrap;border-radius:14px}
-
-  .content{--pad:clamp(16px,3.5vw,28px);padding:var(--pad) max(var(--pad),env(safe-area-inset-right)) calc(88px + env(safe-area-inset-bottom)) max(var(--pad),env(safe-area-inset-left))}
-
-  .grid2{gap:16px}
-  .tools>div{flex-basis:140px}
-  .tools>.btn{flex:1 1 100%}
-
-  /* Tables stay as real tables, but scroll inside their own card, never the page */
-  .tbl{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin}
-  .tbl>div{min-width:0}
-  .trow.c-orders{min-width:900px}
-  .trow.c-menu{min-width:780px}
-  .trow.c-inv{min-width:800px}
-  .trow.c-rep{min-width:420px}
-
-  /* Modals become bottom sheets */
-  .scrim{place-items:end center;padding:0;overscroll-behavior:contain}
-  .modal{max-width:560px;max-height:92vh;max-height:92dvh;overflow-y:auto;border-radius:22px 22px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));animation:sheet .25s ease}
-
-  /* Toasts: full text width, lifted above the tab bar */
-  .toast{bottom:calc(84px + env(safe-area-inset-bottom));width:max-content;max-width:calc(100vw - 32px);text-align:center;border-radius:16px}
+/* ---------- Desktop console: sidebar replaces top bar + tabs ---------- */
+@media (min-width:900px){
+  html{scroll-padding-top:24px}
+  .shell{display:grid;grid-template-columns:264px minmax(0,1fr)}
+  .sidebar{height:100vh;height:100dvh;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:28px;border-bottom:0;border-right:4px solid var(--or);padding:28px 16px;overflow-y:auto}
+  .sb-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+  .sb-foot p{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal;color:#AEB6C2;font-size:13px}
+  .sidebar .btn.sb-out{width:100%}
+  .snav{position:static;flex-direction:column;gap:4px;overflow:visible;background:none;border:0;padding:0}
+  .slink{flex:none;flex-direction:row;justify-content:flex-start;gap:12px;width:100%;min-height:46px;padding:0 14px;font-size:15px;color:#C4CBD6;text-align:left}
+  .slink:hover{background:rgba(255,255,255,.09);color:#fff}
+  .slink.on,.slink.on:hover{background:var(--or);border-color:var(--or);color:var(--ink)}
+  .content{padding:36px clamp(28px,4vw,56px) 56px;max-width:1400px;width:100%}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .grid2{grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:20px}
+  .toast{bottom:24px}
+  .btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--or)}
+  .btn.ghost:hover,.btn.danger:hover{box-shadow:4px 4px 0 var(--ink)}
+  .icobtn:hover{background:var(--or1);color:var(--ink)}
+  .icobtn.del:hover{background:#FBE0DD;color:var(--red)}
+  .trow:not(.head):hover{background:#FFF9E3}
 }
 
-/* Phones */
-@media (max-width:600px){
-  .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .kpi{padding:14px}
-  .kpi p{font-size:13px}
-  .kpi b{font-size:clamp(22px,7vw,28px)}
-  .content h1{font-size:28px;line-height:1.15}
-  .content h2{font-size:22px;line-height:1.2}
-  .plot{height:160px}
-  .xl{font-size:11px}
-  /* 16px form text stops iOS Safari zooming the page on focus */
-  .in,input,select,textarea{font-size:16px}
-}
-
-/* Very small phones */
+/* ---------- Narrow phones and short landscape ---------- */
 @media (max-width:360px){
   .sb-title span{display:none}
-  .sb-out{padding:0 12px}
   .slink{min-width:58px;padding:6px 8px}
 }
-
-/* Landscape phones: reclaim vertical space */
-@media (max-width:860px) and (max-height:480px){
+@media (max-width:899px) and (max-height:480px){
   .sidebar{position:static}
   .slink{flex-direction:row;gap:8px;min-height:44px}
-  .snav{padding-top:4px;padding-bottom:calc(4px + env(safe-area-inset-bottom))}
-  .content{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
-  .toast{bottom:calc(68px + env(safe-area-inset-bottom))}
 }
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
